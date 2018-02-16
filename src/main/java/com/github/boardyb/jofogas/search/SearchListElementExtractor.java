@@ -40,11 +40,8 @@ public class SearchListElementExtractor {
         return isNullOrEmpty(priceString) ? 0 : Integer.parseInt(priceString);
     }
 
-    private LocalDateTime extractDateFromElement(Element element) {
+    protected LocalDateTime extractDateFromElement(Element element) {
         String timeElementString = element.select(".time").text();
-        if (isNullOrEmpty(timeElementString)) {
-            return LocalDateTime.MIN;
-        }
         String dateString = timeElementString.split(",")[0];
         String timeString = timeElementString.split(",")[1].trim();
         boolean dateIsMoreThanPastMonth = dateString.equalsIgnoreCase("több");
@@ -68,7 +65,7 @@ public class SearchListElementExtractor {
     }
 
     private LocalDate parseMonthAndDayFromShortForm(String dateString) {
-        return parseString(dateString);
+        return parseString(dateString, getLocalDateOfToday());
     }
 
     private ArrayList<String> extractBadgeFromElement(Element element) {
