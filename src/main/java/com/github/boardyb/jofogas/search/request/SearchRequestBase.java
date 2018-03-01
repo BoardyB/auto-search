@@ -1,4 +1,4 @@
-package com.github.boardyb.jofogas.search;
+package com.github.boardyb.jofogas.search.request;
 
 import org.apache.http.client.methods.HttpGet;
 

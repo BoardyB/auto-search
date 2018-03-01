@@ -1,6 +1,7 @@
 package com.github.boardyb.jofogas.search;
 
 import com.github.boardyb.jofogas.search.criteria.SearchCriteria;
+import com.github.boardyb.jofogas.search.extract.SearchListElementExtractor;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -17,8 +18,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import static com.github.boardyb.jofogas.search.SearchRequestBase.initSearchRequestHeaders;
-import static com.github.boardyb.jofogas.search.SearchURLStringBuilder.SITE_BASE_URL;
+import static com.github.boardyb.jofogas.search.request.SearchRequestBase.initSearchRequestHeaders;
+import static com.github.boardyb.jofogas.search.request.SearchURLStringBuilder.SITE_BASE_URL;
 import static com.google.common.collect.Lists.newArrayList;
 
 @Component

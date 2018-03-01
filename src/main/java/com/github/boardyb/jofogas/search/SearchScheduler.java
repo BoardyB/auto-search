@@ -7,45 +7,50 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
-import static com.google.common.collect.Lists.newArrayList;
+import static java.util.Objects.isNull;
 
 @Component
 public class SearchScheduler {
-    
+
     private Logger logger = LoggerFactory.getLogger(SearchScheduler.class);
+
+    public static int RESULT_SIZE = 25;
 
     @Autowired
     private SearchClient searchClient;
 
     private SearchCriteria searchCriteria = new SearchCriteria();
-    private List<SearchListElement> searchResults = newArrayList();
 
-    @Scheduled(fixedRate = 5000)
+    Map<String, SearchListElement> searchResults = new LinkedHashMap<String, SearchListElement>(RESULT_SIZE) {
+        @Override
+        protected boolean removeEldestEntry(Map.Entry eldest) {
+            return size() > RESULT_SIZE;
+        }
+    };
+
+    @Scheduled(fixedRate = 10000)
     public void scheduledSearch() throws Exception {
         if (isNullOrEmpty(this.searchCriteria.getTerm())) {
             return;
         }
-        this.searchResults = searchClient.search(this.searchCriteria);
-        logger.info("Search returned with the following results: [{}]", this.searchResults);
-    }
+        List<SearchListElement> results = searchClient.search(this.searchCriteria);
+        results.forEach((SearchListElement result) -> {
+            if (isNull(searchResults.get(result.getId()))) {
+                searchResults.put(result.getId(), result);
+                logger.info("SearchListElement has been added: [{}]", result);
+            }
+        });
 
-    public SearchCriteria getSearchCriteria() {
-        return searchCriteria;
+        logger.info("Search returned with the following results: [{}]", this.searchResults);
     }
 
     public void setSearchCriteria(SearchCriteria searchCriteria) {
         this.searchCriteria = searchCriteria;
-    }
-
-    public List<SearchListElement> getSearchResults() {
-        return searchResults;
-    }
-
-    public void setSearchResults(List<SearchListElement> searchResults) {
-        this.searchResults = searchResults;
     }
 
 }

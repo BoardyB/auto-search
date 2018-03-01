@@ -1,6 +1,7 @@
 package com.github.boardyb.jofogas.search;
 
 import com.github.boardyb.jofogas.TestBase;
+import com.github.boardyb.jofogas.search.extract.SearchListElementExtractor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -51,7 +52,11 @@ public class SearchListElementExtractorTest extends TestBase {
     @Test
     public void shouldParseJanuaryDateCorrectly() throws Exception {
         Elements dateField = resultPage.select(".should-parse-january-date-correctly");
-        assertThat(extractor.extractDateFromElement(dateField.first())).isEqualTo(LocalDateTime.of(1995, 1, 17, 11, 34));
+        assertThat(extractor.extractDateFromElement(dateField.first())).isEqualTo(LocalDateTime.of(1995,
+                                                                                                   1,
+                                                                                                   17,
+                                                                                                   11,
+                                                                                                   34));
     }
 
     @Test
@@ -77,6 +82,11 @@ public class SearchListElementExtractorTest extends TestBase {
         @Override
         protected LocalDate getLocalDateOfToday() {
             return LocalDate.of(1995, 7, 6);
+        }
+
+        @Override
+        public LocalDateTime extractDateFromElement(Element element) {
+            return super.extractDateFromElement(element);
         }
     }
 }

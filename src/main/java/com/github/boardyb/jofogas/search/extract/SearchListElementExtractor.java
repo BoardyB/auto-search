@@ -1,5 +1,6 @@
-package com.github.boardyb.jofogas.search;
+package com.github.boardyb.jofogas.search.extract;
 
+import com.github.boardyb.jofogas.search.SearchListElement;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import static com.github.boardyb.jofogas.search.CustomDateParser.parseString;
+import static com.github.boardyb.jofogas.search.extract.CustomDateParser.parseString;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static com.google.common.collect.Lists.newArrayList;
 

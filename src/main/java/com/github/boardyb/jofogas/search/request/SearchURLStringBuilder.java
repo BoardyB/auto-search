@@ -1,4 +1,4 @@
-package com.github.boardyb.jofogas.search;
+package com.github.boardyb.jofogas.search.request;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 

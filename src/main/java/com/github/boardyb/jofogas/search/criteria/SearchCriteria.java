@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static com.github.boardyb.jofogas.search.SearchURLStringBuilder.createURL;
+import static com.github.boardyb.jofogas.search.request.SearchURLStringBuilder.createURL;
 import static com.google.common.base.Strings.isNullOrEmpty;
 
 public class SearchCriteria {
