@@ -1,19 +1,21 @@
 package com.github.boardyb.jofogas.search;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * This class represents a search result element. It contains the properties of an element parsed from the response
+ * content of the search request.
+ */
 public class SearchListElement {
 
     private String id;
     private String subject;
     private int pictureCount;
     private int price;
-    //    TODO: Map categories to wrapper enum
     private String category;
     private LocalDateTime uploadDate;
-    //    TODO: Map badges to wrapper enum
-    private ArrayList<String> badge;
+    private List<String> badge;
     private boolean validPhoneNumber;
 
     public SearchListElement(String id,
@@ -22,7 +24,7 @@ public class SearchListElement {
                              int price,
                              String category,
                              LocalDateTime uploadDate,
-                             ArrayList<String> badge,
+                             List<String> badge,
                              boolean validPhoneNumber) {
         this.id = id;
         this.subject = subject;
@@ -85,11 +87,11 @@ public class SearchListElement {
         this.uploadDate = uploadDate;
     }
 
-    public ArrayList<String> getBadge() {
+    public List<String> getBadge() {
         return badge;
     }
 
-    public void setBadge(ArrayList<String> badge) {
+    public void setBadge(List<String> badge) {
         this.badge = badge;
     }
 

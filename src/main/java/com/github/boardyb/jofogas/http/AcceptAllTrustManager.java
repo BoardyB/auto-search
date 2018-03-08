@@ -4,6 +4,9 @@ import javax.net.ssl.X509TrustManager;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
+/**
+ * Trust manager implementation which can post to any type of URL.
+ */
 public class AcceptAllTrustManager implements X509TrustManager {
 
     @Override

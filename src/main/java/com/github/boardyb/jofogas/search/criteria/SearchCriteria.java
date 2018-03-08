@@ -9,6 +9,10 @@ import java.net.URISyntaxException;
 import static com.github.boardyb.jofogas.search.request.SearchURLStringBuilder.createURL;
 import static com.google.common.base.Strings.isNullOrEmpty;
 
+/**
+ * This class represents properties to filter the search by.
+ * It is also responsible for generating URI for HttpClient to post and adding the criteria to this URI.
+ */
 public class SearchCriteria {
 
     private RegionTypes region = RegionTypes.DEFAULT;
@@ -39,6 +43,12 @@ public class SearchCriteria {
     public SearchCriteria() {
     }
 
+    /**
+     * This method is responsible for generating an URI for the HttpClient to post and adding criteria to the URI.
+     *
+     * @return URI which contains criteria.
+     * @throws URISyntaxException if an error occurs during URI building.
+     */
     public URI generateURI() throws URISyntaxException {
         URIBuilder uriBuilder = new URIBuilder(buildURLString());
         addTermIfNotEmpty(uriBuilder);
@@ -47,6 +57,11 @@ public class SearchCriteria {
         return uriBuilder.build();
     }
 
+    /**
+     * This method creates an URL string which contains the criteria that needs to appear in the URL.
+     *
+     * @return URL string with criteria.
+     */
     protected String buildURLString() {
         if (distanceFromCity == 0) {
             return createURL().appendSegmentToURL(this.region.getValue())
@@ -63,18 +78,33 @@ public class SearchCriteria {
         }
     }
 
+    /**
+     * Adds search term to URI if it is not null or empty.
+     *
+     * @param uriBuilder with search term added as URI parameter.
+     */
     private void addTermIfNotEmpty(URIBuilder uriBuilder) {
         if (!isNullOrEmpty(this.term)) {
             uriBuilder.setParameter("q", this.term);
         }
     }
 
+    /**
+     * Adds max price to URI if it is not zero.
+     *
+     * @param uriBuilder with max price added as URI parameter.
+     */
     private void addMaxPriceIfNotZero(URIBuilder uriBuilder) {
         if (maxPrice != 0) {
             uriBuilder.setParameter("max_price", String.valueOf(maxPrice));
         }
     }
 
+    /**
+     * Adds min price to URI if it is not zero.
+     *
+     * @param uriBuilder with min price added as URI parameter.
+     */
     private void addMinPriceIfNotZero(URIBuilder uriBuilder) {
         if (minPrice != 0) {
             uriBuilder.setParameter("min_price", String.valueOf(minPrice));
