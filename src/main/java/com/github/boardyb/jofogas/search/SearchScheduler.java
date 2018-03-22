@@ -45,7 +45,7 @@ public class SearchScheduler {
     }
     
     /**
-     * This method runs indefinitely every 30 seconds to find the current search results.
+     * This method runs indefinitely every 5 seconds to find the current search results.
      * If there is no search term provided the method returns with nothing.
      * Every other case a search is being run and the results are collected in searchResults LinkedHashSet,
      * if the Set does not already contain the element.
