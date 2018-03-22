@@ -73,6 +73,9 @@ public class SearchListElementExtractor {
      */
     protected LocalDateTime extractDateFromElement(Element element) {
         String timeElementString = element.select(".time").text();
+        if (isNullOrEmpty(timeElementString)) {
+            return LocalDateTime.now();
+        }
         String dateString = timeElementString.split(",")[0];
         String timeString = timeElementString.split(",")[1].trim();
         boolean dateIsMoreThanPastMonth = dateString.equalsIgnoreCase("több");

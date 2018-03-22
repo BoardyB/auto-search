@@ -38,6 +38,10 @@ public class BasicSearchClient implements SearchClient {
     @Autowired
     private HttpClient httpClient;
 
+    public List<SearchListElement> search(String term) throws Exception {
+        return this.search(new SearchCriteria(term));
+    }
+    
     @Override
     public List<SearchListElement> search(SearchCriteria searchCriteria) throws Exception {
         List<SearchListElement> searchResults = newArrayList();

@@ -40,6 +40,10 @@ public class SearchCriteria {
         this.term = term;
     }
 
+    public SearchCriteria(String term) {
+        this.term = term;
+    }
+
     public SearchCriteria() {
     }
 

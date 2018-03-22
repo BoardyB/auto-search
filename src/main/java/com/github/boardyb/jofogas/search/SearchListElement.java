@@ -2,6 +2,7 @@ package com.github.boardyb.jofogas.search;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class represents a search result element. It contains the properties of an element parsed from the response
@@ -111,15 +112,14 @@ public class SearchListElement {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         SearchListElement that = (SearchListElement) o;
-
-        return subject != null ? subject.equals(that.subject) : that.subject == null;
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return subject != null ? subject.hashCode() : 0;
+
+        return Objects.hash(id);
     }
 
     @Override
