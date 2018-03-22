@@ -1,0 +1,32 @@
+{
+  "defaultHeaders": [
+    {
+      "name": "Accept",
+      "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+    },
+    {
+      "name": "Accept-Encoding",
+      "value": "gzip, deflate, br"
+    },
+    {
+      "name": "Accept-Language",
+      "value": "hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7"
+    },
+    {
+      "name": "Host",
+      "value": "www.jofogas.hu"
+    },
+    {
+      "name": "Upgrade-Insecure-Requests",
+      "value": "1"
+    },
+    {
+      "name": "Referer",
+      "value": "http://www.jofogas.hu/"
+    },
+    {
+      "name": "User-Agent",
+      "value": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+    }
+  ]
+}

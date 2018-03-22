@@ -77,6 +77,12 @@ public class SearchListElementExtractorTest extends TestBase {
         assertThat(extractor.extractDateFromElement(dateField.first())).isEqualTo(LocalDateTime.MIN);
     }
 
+    @Test
+    public void shouldReturnCurrentLocalDateIfParsedDateIsNullOrEmpty() throws Exception {
+        Elements dateField = resultPage.select(".should-return-current-local-date-if-parsed-date-is-null-or-empty");
+        assertThat(extractor.extractDateFromElement(dateField.first())).isEqualTo(LocalDateTime.of(1995, 7, 6, 0, 0));
+    }
+
     private static class TestSearchListElementExtractor extends SearchListElementExtractor {
 
         @Override

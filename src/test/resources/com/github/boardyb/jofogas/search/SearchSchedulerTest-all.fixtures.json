@@ -1,0 +1,31 @@
+{
+  "defaultSearchResults": [
+    {
+      "id": "1",
+      "subject": "SAMSUNG LED TV",
+      "pictureCount": 3,
+      "price": 12000,
+      "category": "TV",
+      "badge": ["Céges", "Multirégió"],
+      "validPhoneNumber": true
+    },
+    {
+      "id": "2",
+      "subject": "Samsung LE32R81W - 32 LCD TV",
+      "pictureCount": 2,
+      "price": 80000,
+      "category": "TV",
+      "badge": [],
+      "validPhoneNumber": false
+    },
+    {
+      "id": "3",
+      "subject": "Samsung UE55F6340 3D LED TV 138CM",
+      "pictureCount": 5,
+      "price": 120000,
+      "category": "TV",
+      "badge": [],
+      "validPhoneNumber": true
+    }
+  ]
+}

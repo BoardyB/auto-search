@@ -105,6 +105,11 @@
 			<version>${assertj.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>ie.corballis</groupId>
+			<artifactId>json-fixtures-lib</artifactId>
+			<version>1.0.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>

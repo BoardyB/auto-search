@@ -5,6 +5,7 @@ import org.apache.http.client.utils.URIBuilder;
 import javax.validation.constraints.NotNull;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Objects;
 
 import static com.github.boardyb.jofogas.search.request.SearchURLStringBuilder.createURL;
 import static com.google.common.base.Strings.isNullOrEmpty;
@@ -172,16 +173,22 @@ public class SearchCriteria {
     }
 
     @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("SearchCriteria{");
-        sb.append("region='").append(region).append('\'');
-        sb.append(", city='").append(city).append('\'');
-        sb.append(", distanceFromCity='").append(distanceFromCity).append('\'');
-        sb.append(", category='").append(category).append('\'');
-        sb.append(", maxPrice=").append(maxPrice);
-        sb.append(", minPrice=").append(minPrice);
-        sb.append(", term='").append(term).append('\'');
-        sb.append('}');
-        return sb.toString();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SearchCriteria that = (SearchCriteria) o;
+        return distanceFromCity == that.distanceFromCity && maxPrice == that.maxPrice && minPrice == that.minPrice &&
+               region == that.region && Objects.equals(city, that.city) && Objects.equals(category, that.category) &&
+               Objects.equals(term, that.term);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(region, city, distanceFromCity, category, maxPrice, minPrice, term);
     }
 }

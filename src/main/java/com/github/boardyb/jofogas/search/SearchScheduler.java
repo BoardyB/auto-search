@@ -37,7 +37,7 @@ public class SearchScheduler {
 
     private SearchCriteria searchCriteria = new SearchCriteria();
 
-    Set<SearchListElement> searchResults = new LinkedHashSet<>(RESULT_SIZE);
+    private Set<SearchListElement> searchResults = new LinkedHashSet<>(RESULT_SIZE);
 
     @PostConstruct
     public void initializeCriteria() {
@@ -84,8 +84,19 @@ public class SearchScheduler {
         this.searchResults = newLinkedHashSet();
     }
 
+    public Set<SearchListElement> getSearchResults() {
+        return searchResults;
+    }
+
     public void setSearchCriteria(SearchCriteria searchCriteria) {
         this.searchCriteria = searchCriteria;
     }
 
+    public void setSearchClient(SearchClient searchClient) {
+        this.searchClient = searchClient;
+    }
+
+    public void setSearchResultWriter(SearchResultWriter searchResultWriter) {
+        this.searchResultWriter = searchResultWriter;
+    }
 }

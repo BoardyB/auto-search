@@ -28,7 +28,7 @@ public class CustomDateParser {
         String dayWithoutDot = dayOfTheMonthString.substring(0, dayOfTheMonthString.length() - 1);
         int dayOfTheMonth = Integer.parseInt(dayWithoutDot);
         int numberOfMonth = getConvertibleMonths().indexOf(monthShortFormString) + 1;
-        int month = numberOfMonth == -1 ? 1 : numberOfMonth;
+        int month = numberOfMonth == 0 ? 1 : numberOfMonth;
         return LocalDate.of(localDateOfToday.getYear(), month, dayOfTheMonth);
     }
 
