@@ -1,6 +1,5 @@
 package com.github.boardyb.jofogas.search;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.github.boardyb.jofogas.search.criteria.SearchCriteria;
 import com.github.boardyb.jofogas.search.extract.SearchListElementExtractor;
@@ -12,14 +11,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -88,8 +87,25 @@ public class SearchSchedulerTest {
         doReturn(secondResult).when(searchClient).search(criteria2);
         searchScheduler.setSearchCriteria(criteria2);
         searchScheduler.scheduledSearch();
-        
+
         assertThat(searchScheduler.getSearchResults()).containsAll(defaultSearchResults);
         assertThat(searchScheduler.getSearchResults()).containsAll(secondResult);
+    }
+
+    @Test
+    public void shouldWriteResultsToFileAndEmptyThem() throws Exception {
+        doNothing().when(searchResultWriter).displaySearchResult(any(SearchListElement.class));
+        SearchCriteria criteria = new SearchCriteria("term");
+        doReturn(defaultSearchResults).when(searchClient).search(criteria);
+        searchScheduler.setSearchCriteria(criteria);
+        searchScheduler.scheduledSearch();
+
+        searchScheduler.writeAndEmptyResultHistory();
+        Path path = Paths.get("search-results.txt");
+        List<String> fileContent = Files.readAllLines(path, Charset.forName("UTF-8"));
+        assertThat(fileContent).isEqualTo(newArrayList("SAMSUNG LED TV,12000",
+                                                       "Samsung LE32R81W - 32 LCD TV,80000",
+                                                       "Samsung UE55F6340 3D LED TV 138CM,120000"));
+        assertThat(searchScheduler.getSearchResults()).isEmpty();
     }
 }

@@ -45,7 +45,7 @@ public class SearchListElement {
 
     @JsonIgnore
     public String getResultString() {
-        Joiner joiner = Joiner.on(",");
+        Joiner joiner = Joiner.on(",").skipNulls();
         return joiner.join(this.subject, this.price, this.uploadDate);
     }
 
