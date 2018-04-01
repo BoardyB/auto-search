@@ -1,5 +1,8 @@
 package com.github.boardyb.jofogas.search;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Joiner;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -38,6 +41,12 @@ public class SearchListElement {
     }
 
     public SearchListElement() {
+    }
+
+    @JsonIgnore
+    public String getResultString() {
+        Joiner joiner = Joiner.on(",");
+        return joiner.join(this.subject, this.price, this.uploadDate);
     }
 
     public String getId() {

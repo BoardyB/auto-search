@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,15 +24,15 @@ import static com.google.common.collect.Sets.newLinkedHashSet;
 public class SearchScheduler {
 
     private Logger logger = LoggerFactory.getLogger(SearchScheduler.class);
-    
+
     private static final int RESULT_SIZE = 1000;
-    
+
     @Autowired
     private SearchClient searchClient;
 
     @Autowired
     private SearchResultWriter searchResultWriter;
-    
+
     @Autowired
     private SearchProperties searchProperties;
 
@@ -43,7 +44,7 @@ public class SearchScheduler {
     public void initializeCriteria() {
         this.searchCriteria = new SearchCriteria(searchProperties.getTerm());
     }
-    
+
     /**
      * This method runs indefinitely every 5 seconds to find the current search results.
      * If there is no search term provided the method returns with nothing.
@@ -77,9 +78,16 @@ public class SearchScheduler {
 
         logger.info("Search returned with the following results: [{}]", this.searchResults);
     }
-    
+
+    /**
+     * This method is responsible for writing the collected search results to a file and then emptying the result set.
+     *
+     * @throws IOException if failed to write results to file.
+     */
     @Scheduled(cron = "0 0 0/12 1/1 * *")
-    public void emptySearchResults() {
+    public void writeAndEmptyResultHistory() throws IOException {
+        logger.debug("Writing search results to search-results.txt file");
+        searchResultWriter.writeResultsToFile(this.searchResults);
         logger.info("Removing all previous results of search. {}", this.searchResults);
         this.searchResults = newLinkedHashSet();
     }
