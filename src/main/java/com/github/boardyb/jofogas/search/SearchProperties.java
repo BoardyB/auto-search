@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class SearchProperties {
 
     private String term;
+    private String client;
 
     public String getTerm() {
         return term;
@@ -13,6 +14,14 @@ public class SearchProperties {
 
     public void setTerm(String term) {
         this.term = term;
+    }
+
+    public String getClient() {
+        return client;
+    }
+
+    public void setClient(String client) {
+        this.client = client;
     }
 
     @Override

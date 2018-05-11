@@ -43,7 +43,7 @@ public class SearchSchedulerTest {
     private SearchResultWriter searchResultWriter;
 
     @SpyBean
-    private BasicSearchClient searchClient;
+    private JofogasSearchClient searchClient;
 
     @InjectMocks
     private SearchScheduler searchScheduler;

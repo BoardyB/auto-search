@@ -28,9 +28,9 @@ import static com.google.common.collect.Lists.newArrayList;
  * The data from the parsed document is being extracted to SearchListElement objects.
  */
 @Component
-public class BasicSearchClient implements SearchClient {
+public class JofogasSearchClient implements SearchClient {
 
-    private Logger logger = LoggerFactory.getLogger(BasicSearchClient.class);
+    private Logger logger = LoggerFactory.getLogger(JofogasSearchClient.class);
 
     @Autowired
     private SearchListElementExtractor extractor;
