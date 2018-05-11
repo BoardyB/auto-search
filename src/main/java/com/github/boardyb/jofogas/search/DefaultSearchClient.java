@@ -4,7 +4,7 @@ import com.github.boardyb.jofogas.search.criteria.SearchCriteria;
 
 import java.util.List;
 
-public class DefaulSearchClient implements SearchClient {
+public class DefaultSearchClient implements SearchClient {
     @Override
     public List<SearchListElement> search(SearchCriteria searchCriteria) throws Exception {
         return null;

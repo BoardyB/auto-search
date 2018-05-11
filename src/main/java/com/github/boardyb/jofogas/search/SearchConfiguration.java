@@ -18,14 +18,14 @@ public class SearchConfiguration {
         SearchProperties searchProperties = searchProperties();
         String client = searchProperties.getClient();
         if (isNull(client)) {
-            return new DefaulSearchClient();
+            return new DefaultSearchClient();
         }
 
         boolean jofogasClient = client.equals("jofogas");
         if (jofogasClient) {
             return new JofogasSearchClient();
         } else {
-            return new DefaulSearchClient();
+            return new DefaultSearchClient();
         }
     }
 
